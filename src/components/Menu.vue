@@ -151,7 +151,7 @@
         return (
           <div class="vue-treeselect__list">
             {instance.forest.normalizedOptions.map(rootNode => (
-              <Option node={rootNode} key={rootNode.id} />
+              <Option  node={rootNode} key={rootNode.id} />
             ))}
           </div>
         )

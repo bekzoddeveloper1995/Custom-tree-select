@@ -17,6 +17,7 @@
         :limit="3"
         :max-height="200"
         v-model="value"
+        :func="func"
         />
     </div>
     <treeselect-value :value="value" />
@@ -59,8 +60,10 @@
       appendToBody: false,
       rtl: false,
       value: [ 'a' ],
+      func: Function,
       options: generateOptions(3, 4),
     }),
+   
 
     watch: {
       multiple(newValue) {
