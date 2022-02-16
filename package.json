@@ -1,6 +1,6 @@
 {
   "name": "@bekzoddeveloper1995/custom-tree-select",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A multi-select component with nested options support for Vue.js",
   "author": "Bekzod Rahmonov <bekzodrakhmonov1995@gmail.com>",
   "license": "MIT",
