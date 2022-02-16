@@ -49,9 +49,9 @@
         return (
           <div class={optionClass} onMouseenter={this.handleMouseEnterOption} data-id={node.id}>           
             {this.renderLabelContainer([
-             !node.isBranch && node.ancestors.length ? <svg onMousedown={this.handleMouseDownOnIcon} style="margin-right:10px" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              !node.isBranch && node.ancestors.length ? <svg onMousedown={this.handleMouseDownOnIcon} style="margin-right:10px" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                  <path d="M10 0.25C4.624 0.25 0.25 4.624 0.25 10C0.25 15.376 4.624 19.75 10 19.75C15.376 19.75 19.75 15.376 19.75 10C19.75 4.624 15.376 0.25 10 0.25ZM10 1.75C14.5645 1.75 18.25 5.4355 18.25 10C18.25 14.5645 14.5645 18.25 10 18.25C5.4355 18.25 1.75 14.5645 1.75 10C1.75 5.4355 5.4355 1.75 10 1.75ZM9.25 5.5V7H10.75V5.5H9.25ZM9.25 8.5V14.5H10.75V8.5H9.25Z" fill="#949494"/>
-              </svg> : null,              
+              </svg> : null,            
                this.renderLabel(),
                this.renderCheckboxContainer([
                this.renderCheckbox()
@@ -117,7 +117,7 @@
 
       renderLabelContainer(children) {
         return (
-          <div class="vue-treeselect__label-container" onClick={this.handleMouseDownOnLabelContainer}>
+          <div class="vue-treeselect__label-container" onMousedown={this.handleMouseDownOnLabelContainer}>
             {children}
           </div>
         )
@@ -252,18 +252,18 @@
         instance.setCurrentHighlightedOption(node, false)
       },
 
+      handleMouseDownOnIcon: onLeftClick(function handleMouseDownOnOptionArrow() {
+        const { instance, node } = this
+        if (typeof instance.func === 'function') {
+            instance.func.call(this)
+        }
+      }),
+
       handleMouseDownOnArrow: onLeftClick(function handleMouseDownOnOptionArrow() {
         const { instance, node } = this
 
         instance.toggleExpanded(node)
       }),
-
-      handleMouseDownOnIcon: () => {     
-        if (this) {
-           const { instance } = this
-          instance.func.call(this)
-        }
-      },
 
       handleMouseDownOnLabelContainer: onLeftClick(function handleMouseDownOnLabelContainer() {
         const { instance, node } = this
