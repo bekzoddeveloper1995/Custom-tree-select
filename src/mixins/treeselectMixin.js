@@ -348,7 +348,7 @@ export default {
      */
     limitText: {
       type: Function,
-      default: function limitTextDefault(count) { // eslint-disable-line func-name-matching
+      default: function limitTextDefault(count) { 
         return `and ${count} more`
       },
     },
@@ -690,7 +690,7 @@ export default {
   },
 
   computed: {
-    /* eslint-disable valid-jsdoc */
+ 
     /**
      * Normalized nodes that have been selected.
      * @type {node[]}
@@ -807,7 +807,7 @@ export default {
     shouldFlattenOptions() {
       return this.localSearch.active && this.flattenSearchResults
     },
-    /* eslint-enable valid-jsdoc */
+  
   },
 
   watch: {

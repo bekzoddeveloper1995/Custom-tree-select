@@ -92,11 +92,11 @@
 @treeselect-checkbox-bg-hover: @treeselect-checkbox-bg;
 @treeselect-checkbox-indeterminate-border-color: @treeselect-checkbox-color-highlight;
 @treeselect-checkbox-indeterminate-bg: @treeselect-checkbox-color-highlight;
-@treeselect-checkbox-indeterminate-icon: "./assets/checkbox-indeterminate.png";
+@treeselect-checkbox-indeterminate-icon: "./assets/checkbox-checked.png";
 @treeselect-checkbox-indeterminate-border-color-hover: @treeselect-checkbox-color-highlight;
 @treeselect-checkbox-indeterminate-bg-hover: @treeselect-checkbox-color-highlight;
 @treeselect-checkbox-checked-border-color: @treeselect-checkbox-color-highlight;
-@treeselect-checkbox-checked-bg: @treeselect-checkbox-color-highlight;
+@treeselect-checkbox-checked-bg: "./assets/checkbox-checked.png";
 @treeselect-checkbox-checked-icon: "./assets/checkbox-checked.png";
 @treeselect-checkbox-checked-border-color-hover: @treeselect-checkbox-color-highlight;
 @treeselect-checkbox-checked-bg-hover: @treeselect-checkbox-color-highlight;
@@ -714,13 +714,13 @@
 .vue-treeselect__menu {
   .reset-cursor(); // set to normal cursor since text is unselectable
   .vertical-padding(@treeselect-menu-padding-y);
-
+   padding: 0;
   display: block;
   position: absolute;
   overflow-x: hidden;
   overflow-y: auto;
   // IE9 does not properly handle `width: 100%` with scrollbar when `box-sizing: border-box`
-  width: auto;
+  width: 100%;
   border: 1px solid @treeselect-control-border-color-active;
   background: @treeselect-menu-bg;
   line-height: @treeselect-menu-line-height;
@@ -751,10 +751,17 @@
   .vue-treeselect__indent-level-@{i} {
     .vue-treeselect__option {
       padding-left: @treeselect-padding + @i * @treeselect-narrow-cell-width;
-
+      display: flex!important;
+      align-items: center;
+      width: 100%!important;
+      height: 48px;  
       [dir="rtl"] & {
         padding-left: @treeselect-padding;
         padding-right: @treeselect-padding + @i * @treeselect-narrow-cell-width;
+      }
+      padding: 21px 32px;
+      &:hover {
+        background: #EDF2FF;
       }
     }
 
@@ -775,7 +782,7 @@
 }
 
 .vue-treeselect__option--highlight {
-  background: @treeselect-option-bg-highlight;
+  background: transparent
 }
 
 .vue-treeselect__option--selected {
@@ -800,6 +807,7 @@
 }
 
 .vue-treeselect__option-arrow-container {
+  margin-left: 34px;
   .clickable();
 }
 
@@ -841,9 +849,8 @@
 .vue-treeselect__label-container {
   .cell();
   .clickable();
-
-  display: table;
-  width: 100%;
+  display: flex;  
+  align-items: center;
   table-layout: fixed;
   color: @treeselect-option-label-color;
 
@@ -861,6 +868,7 @@
   height: 100%;
   text-align: center;
   vertical-align: middle;
+  margin-left: 38px;
 }
 
 .vue-treeselect__checkbox {
@@ -886,80 +894,38 @@
   transition: @treeselect-transition-duration all ease;
 }
 
-.vue-treeselect__minus-mark {
-  width: image-width(@treeselect-checkbox-indeterminate-icon);
-  height: image-height(@treeselect-checkbox-indeterminate-icon);
-  // Svg icons are rendered differently in different browsers thus unacceptable.
-  // Png provides the best consistency with a drawback that
-  // its color can't be controlled by CSS.
-  .retina(@treeselect-checkbox-indeterminate-icon, 3);
-  background-size: image-size(@treeselect-checkbox-indeterminate-icon);
 
-  .vue-treeselect__checkbox--indeterminate > & {
-    opacity: 1;
-  }
-
-  .vue-treeselect__checkbox--disabled & {
-    .retina(@treeselect-checkbox-disabled-indeterminate-icon, 3);
+.aside {  
+  .vue-treeselect__label-container {
+    margin-left: 30px;
   }
 }
 
-.vue-treeselect__check-mark {
-  width: image-width(@treeselect-checkbox-checked-icon);
-  height: image-height(@treeselect-checkbox-checked-icon);
-  .retina(@treeselect-checkbox-checked-icon, 3);
-  background-size: image-size(@treeselect-checkbox-checked-icon);
-  // Set initial height to 1px.
-  transform: scaleY(1 / unit(image-height(@treeselect-checkbox-checked-icon)));
-
-  .vue-treeselect__checkbox--checked > & {
-    opacity: 1;
-    transform: scaleY(1);
-  }
-
-  .vue-treeselect__checkbox--disabled & {
-    .retina(@treeselect-checkbox-disabled-checked-icon, 3);
-  }
-}
 
 .vue-treeselect__checkbox--unchecked {
-  border-color: @treeselect-checkbox-border-color;
-  background: @treeselect-checkbox-bg;
-
-  .vue-treeselect__label-container:hover & {
-    border-color: @treeselect-checkbox-border-color-hover;
-    background: @treeselect-checkbox-bg-hover;
-  }
+  height: 24px;
+  width: 24px;
+  background-image: url('../src/assets/checkbox-checked.svg');
+  background-size: contain;
+  border:none;
 }
 
 .vue-treeselect__checkbox--indeterminate {
   border-color: @treeselect-checkbox-indeterminate-border-color;
   background: @treeselect-checkbox-indeterminate-bg;
-
-  .vue-treeselect__label-container:hover & {
-    border-color: @treeselect-checkbox-indeterminate-border-color-hover;
-    background: @treeselect-checkbox-indeterminate-bg-hover;
-  }
 }
 
-.vue-treeselect__checkbox--checked {
-  border-color: @treeselect-checkbox-checked-border-color;
-  background: @treeselect-checkbox-checked-bg;
-
-  .vue-treeselect__label-container:hover & {
-    border-color: @treeselect-checkbox-checked-border-color-hover;
-    background: @treeselect-checkbox-checked-bg-hover;
-  }
+.vue-treeselect__checkbox--checked {  
+  height: 24px;
+  width: 24px;
+  background-image: url('../src/assets/uncheck.svg');
+  background-size: contain;
+  border:none;
 }
 
 .vue-treeselect__checkbox--disabled {
   border-color: @treeselect-checkbox-disabled-border-color;
   background-color: @treeselect-checkbox-disabled-bg-color;
-
-  .vue-treeselect__label-container:hover & {
-    border-color: @treeselect-checkbox-disabled-border-color;
-    background-color: @treeselect-checkbox-disabled-bg-color;
-  }
 }
 
 
@@ -1144,4 +1110,39 @@
   border: 0;
   overflow: visible;
   box-sizing: border-box;
+}
+.vue-treeselect__menu {
+  width: 433px;
+  margin-top: 2px!important;
+  border: 1px solid #CACACA!important;
+  box-sizing: border-box;
+  filter: drop-shadow(0px 42px 80px rgba(0, 0, 0, 0.0196802)) drop-shadow(0px 17.5466px 33.4221px rgba(0, 0, 0, 0.0282725)) drop-shadow(0px 9.38125px 17.869px rgba(0, 0, 0, 0.035)) drop-shadow(0px 5.25905px 10.0172px rgba(0, 0, 0, 0.0417275)) drop-shadow(0px 2.79304px 5.32008px rgba(0, 0, 0, 0.0503198)) drop-shadow(0px 1.16225px 2.21381px rgba(0, 0, 0, 0.07));
+  border-radius: 4px;
+}
+.vue-treeselect__control {
+  height: 48px;
+  width: 328px;
+  border: 1px solid #E1E1E1!important;
+  box-sizing: border-box!important;
+  border-radius: 4px!important;
+}
+.vue-treeselect__x-container {
+  display: none;
+}
+.vue-treeselect__multi-value-item {
+  padding: 6px 13px;
+  background: #EFEFEF;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 19px;
+  color: #151515;
+}
+.vue-treeselect__icon.vue-treeselect__value-remove  {
+  display: none;
+}
+.vue-treeselect__input {
+  margin-top: 5px;
+}
+.vue-treeselect__limit-tip-text {
+  display: none;
 }

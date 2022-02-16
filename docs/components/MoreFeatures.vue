@@ -55,11 +55,11 @@
       openOnFocus: false,
       clearOnSelect: true,
       closeOnSelect: false,
-      alwaysOpen: false,
+      alwaysOpen: true,
       appendToBody: false,
       rtl: false,
       value: [ 'a' ],
-      options: generateOptions(2, 3),
+      options: generateOptions(3, 4),
     }),
 
     watch: {

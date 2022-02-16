@@ -19,9 +19,7 @@
       menuStyle() {
         const { instance } = this
 
-        return {
-          maxHeight: instance.maxHeight + 'px',
-        }
+       
       },
 
       menuContainerStyle() {
@@ -66,7 +64,7 @@
         if (!instance.menu.isOpen) return null
 
         return (
-          <div ref="menu" class="vue-treeselect__menu" onMousedown={instance.handleMouseDown} style={this.menuStyle}>
+          <div ref="menu" class="vue-treeselect__menu" onMousedown={instance.handleMouseDown} >
             {this.renderBeforeList()}
             {instance.async
               ? this.renderAsyncSearchMenuInner()

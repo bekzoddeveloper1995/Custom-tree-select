@@ -1,3 +1,5 @@
 dist
 static
+src
 test/unit/coverage
+src/components
