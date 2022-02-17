@@ -648,6 +648,7 @@ export default {
         // User entered search query - value of the input.
         searchQuery: '',
       },
+      check_node:false,
 
       menu: {
         // Is the menu opened?
@@ -1166,12 +1167,14 @@ export default {
     },
 
     handleMouseDown: onLeftClick(function handleMouseDown(evt) {
+     
       evt.preventDefault()
       evt.stopPropagation()
 
+
       if (this.disabled) return
 
-      const isClickedOnValueContainer = this.getValueContainer().$el.contains(evt.target)
+      const isClickedOnValueContainer = this.getValueContainer().$el.contains(evt.target)     
       if (isClickedOnValueContainer && !this.menu.isOpen && (this.openOnClick || this.trigger.isFocused)) {
         this.openMenu()
       }
@@ -1491,21 +1494,23 @@ export default {
       const checkedStateMap = createMap()
       if (this.multiple) {
         this.traverseAllNodesByIndex(node => {
+          // check_node        
           checkedStateMap[node.id] = UNCHECKED
         })
 
-        this.selectedNodes.forEach(selectedNode => {
+        this.selectedNodes.forEach(selectedNode => {         
           checkedStateMap[selectedNode.id] = CHECKED
 
           if (!this.flat && !this.disableBranchNodes) {
             selectedNode.ancestors.forEach(ancestorNode => {
+              
               if (!this.isSelected(ancestorNode)) {
                 checkedStateMap[ancestorNode.id] = INDETERMINATE
               }
             })
           }
         })
-      }
+      }   
       this.forest.checkedStateMap = checkedStateMap
     },
 
@@ -1751,7 +1756,7 @@ export default {
       )
     },
 
-    select(node) {
+    select(node) {     
       if (this.disabled || node.isDisabled) {
         return
       }
