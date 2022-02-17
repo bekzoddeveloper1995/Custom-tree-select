@@ -49,9 +49,9 @@
        
        
         return (
-          <div class={optionClass} onMouseenter={this.handleMouseEnterOption} data-id={node.id}>
-            {!node.isBranch ? this.rendenInfoIcon() : null}               
-            {this.renderLabelContainer([                        
+          <div class={optionClass} onMouseenter={this.handleMouseEnterOption} data-id={node.id}>                      
+            {this.renderLabelContainer([
+              !node.isBranch && node.ancestors.length ? this.rendenInfoIcon() : null,                        
                this.renderLabel(),
                this.renderCheckboxContainer([
                this.renderCheckbox()
