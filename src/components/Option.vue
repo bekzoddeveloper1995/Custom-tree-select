@@ -46,11 +46,11 @@
           'vue-treeselect__option--matched': instance.localSearch.active && node.isMatched,
           'vue-treeselect__option--hide': !this.shouldShow,
         }
-        console.log(node);
+       
        
         return (
           <div class={optionClass} onMouseenter={this.handleMouseEnterOption} data-id={node.id}>
-            {!node.isBranch && node.ancestors.length ? this.rendenInfoIcon() : null}               
+            {!node.isBranch ? this.rendenInfoIcon() : null}               
             {this.renderLabelContainer([                        
                this.renderLabel(),
                this.renderCheckboxContainer([
