@@ -39,16 +39,18 @@
           'font-acrom-bold':(node.isBranch && !node.ancestors.length ),
           'font-acrom-medium':(node.isBranch && node.ancestors.length ),
           'font-acrom-regular ':(!node.isBranch && node.ancestors.length ),
+          'parent':!node.isBranch,
           'vue-treeselect__option--disabled': node.isDisabled,
           'vue-treeselect__option--selected': instance.isSelected(node),
           'vue-treeselect__option--highlight': node.isHighlighted,
           'vue-treeselect__option--matched': instance.localSearch.active && node.isMatched,
           'vue-treeselect__option--hide': !this.shouldShow,
         }
+        console.log(node);
        
         return (
           <div class={optionClass} onMouseenter={this.handleMouseEnterOption} data-id={node.id}>
-            {!node.isBranch ? this.rendenInfoIcon() : null}               
+            {!node.isBranch && node.ancestors.length ? this.rendenInfoIcon() : null}               
             {this.renderLabelContainer([                        
                this.renderLabel(),
                this.renderCheckboxContainer([

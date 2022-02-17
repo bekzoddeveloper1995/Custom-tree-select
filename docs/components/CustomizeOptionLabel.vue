@@ -4,7 +4,7 @@
     :value="value"
     :searchable="false"
     :show-count="true"
-    :default-expand-level="1"
+    :default-expand-level="1"  
     >
     <label slot="option-label" slot-scope="{ node, shouldShowCount, count, labelClassName, countClassName }" :class="labelClassName">
       {{ node.isBranch ? 'Branch' : 'Leaf' }}: {{ node.label }}

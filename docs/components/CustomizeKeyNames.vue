@@ -2,7 +2,7 @@
   <treeselect
     :options="options"
     :value="value"
-    :normalizer="normalizer"
+    :normalizer="normalizer"  
     />
 </template>
 
