@@ -77,10 +77,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    func:  {
-      type: Function
-    },
-
     /**
      * When an ancestor node is selected/deselected, whether its disabled descendants should be selected/deselected.
      * You may want to use this in conjunction with `allowClearingDisabled` prop.
