@@ -51,7 +51,7 @@
         return (
           <div class={optionClass} onMouseenter={this.handleMouseEnterOption} data-id={node.id}>                      
             {this.renderLabelContainer([
-              !node.isBranch && node.ancestors.length ? this.rendenInfoIcon() : null,                        
+              !node.isBranch ? this.rendenInfoIcon() : null,                        
                this.renderLabel(),
                this.renderCheckboxContainer([
                this.renderCheckbox()
@@ -260,8 +260,7 @@
 
       handleMouseDownOnIcon: onLeftClick(function handleMouseDownOnIcon(evt) {
         const { instance, node } = this
-        if (typeof instance.func === 'function') {
-            evt.stopPropagation()
+        if (typeof instance.func === 'function') {           
             instance.func.call(this)
         }
       }),
