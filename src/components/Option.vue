@@ -38,7 +38,7 @@
           'vue-treeselect__option ': true,
           'font-acrom-bold':(node.isBranch && !node.ancestors.length ),
            'font-acrom-medium':(node.isBranch && node.ancestors.length ),
-           'font-acrom-regular aside':(!node.isBranch && node.ancestors.length ),
+           'font-acrom-regular ':(!node.isBranch && node.ancestors.length ),
           'vue-treeselect__option--disabled': node.isDisabled,
           'vue-treeselect__option--selected': instance.isSelected(node),
           'vue-treeselect__option--highlight': node.isHighlighted,
