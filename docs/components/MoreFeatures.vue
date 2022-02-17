@@ -17,6 +17,7 @@
         :limit="3"
         :max-height="200"
         v-model="value"
+        :func="testClick"
         />
     </div>
     <treeselect-value :value="value" />
@@ -60,7 +61,13 @@
       rtl: false,
       value: [ 'a' ],
       options: generateOptions(3, 4),
-    }),   
+    }),
+   
+    methods: {
+      testClick(){
+        console.log('test click in page');
+      }
+    },
     watch: {
       multiple(newValue) {
         if (newValue) {

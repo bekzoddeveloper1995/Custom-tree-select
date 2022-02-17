@@ -37,8 +37,8 @@
         const optionClass = {
           'vue-treeselect__option ': true,
           'font-acrom-bold':(node.isBranch && !node.ancestors.length ),
-           'font-acrom-medium':(node.isBranch && node.ancestors.length ),
-           'font-acrom-regular ':(!node.isBranch && node.ancestors.length ),
+          'font-acrom-medium':(node.isBranch && node.ancestors.length ),
+          'font-acrom-regular ':(!node.isBranch && node.ancestors.length ),
           'vue-treeselect__option--disabled': node.isDisabled,
           'vue-treeselect__option--selected': instance.isSelected(node),
           'vue-treeselect__option--highlight': node.isHighlighted,
@@ -243,8 +243,7 @@
       },
 
       handleMouseEnterOption(evt) {
-        const { instance, node } = this
-
+        const { instance, node } = this      
         // Equivalent to `self` modifier.
         // istanbul ignore next
         if (evt.target !== evt.currentTarget) return
@@ -252,9 +251,10 @@
         instance.setCurrentHighlightedOption(node, false)
       },
 
-      handleMouseDownOnIcon: onLeftClick(function handleMouseDownOnOptionArrow() {
+      handleMouseDownOnIcon: onLeftClick(function handleMouseDownOnIcon(evt) {
         const { instance, node } = this
         if (typeof instance.func === 'function') {
+            evt.stopPropagation()
             instance.func.call(this)
         }
       }),
@@ -266,8 +266,7 @@
       }),
 
       handleMouseDownOnLabelContainer: onLeftClick(function handleMouseDownOnLabelContainer() {
-        const { instance, node } = this
-
+        const { instance, node } = this         
         if (node.isBranch && instance.disableBranchNodes) {
           instance.toggleExpanded(node)
         } else {
